@@ -1,7 +1,7 @@
 <?php
-    $nama   = 'Ujun Junaedi';
+    $nama   = 'Nazar';
     $kelas  = 'MI20B';
-    $email  = 'jujunjuna189@gmail.com';
+    $email  = 'ruhimatnazar@gmail.com';
 ?>
 <html>
 <head>
