@@ -1,21 +1,12 @@
 <?php
-require_once('Connection.php');
+require_once('connection.php');
 
-$id = $_GET['id'];
-$delete_query = "DELETE FROM tbl_surat WHERE id = $id";
+$no = $_GET['no_billing'];
+$delete_query = "DELETE FROM tbl_rentalps WHERE no_billing = '$no'";
 $result = $con->query($delete_query);
 
 if ($result) {
-?>
-    <script>
-        alert('Success delete data');
-        window.location.href = '<?= $public_path . "nazar_MI20B/Week4/view.php" ?>';
-    </script>
-<?php
+    header('location:view.php?pesan=delete');
 } else {
-?>
-    <script>
-        alert('Failed delete data');
-    </script>
-<?php
+    header('location:view.php?pesan=delete');
 }

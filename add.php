@@ -1,5 +1,7 @@
 <?php
 require_once('Connection.php');
+$sql = "SELECT * FROM `tbl_jaminan`";
+$result = $con->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,8 +12,8 @@ require_once('Connection.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="assets/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </head>
 
@@ -22,55 +24,52 @@ require_once('Connection.php');
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-header bg-white text-uppercase">
-                            <div class="h3 text-center">Add Surat</div>
+                            <div class="h3 text-center">Tambah Data Rental</div>
                         </div>
                         <div class="card-body">
                             <form action="add_proses.php" method="post">
                                 <div class="row">
-                                    <div class="col-lg-6">
+                                    <div class="col-lg-12 mt-3">
                                         <div class="form-group">
-                                            <small>Nomor Surat</small>
-                                            <input type="text" name="no_surat" id="no_surat" class="form-control" placeholder="SK-2021-09001">
+                                            <small>Nama Penyewa</small>
+                                            <input type="text" name="nama_penyewa" id="nama_penyewa" class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-lg-6">
+
+                                    <div class="col-lg-12 mt-3">
                                         <div class="form-group">
-                                            <small>Jenis Surat</small>
-                                            <select name="jenis_surat" id="jenis_surat" class="form-control">
-                                                <option value="">Silahkan Pilih...</option>
-                                                <option value="1">Surat Keputusan</option>
-                                                <option value="2">Surat Pernyataan</option>
-                                                <option value="3">Surat Peminjaman</option>
+                                            <small>Alamat peminjam</small>
+                                            <input type="text" name="alamat" id="alamat" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 mt-3">
+                                        <div class="form-group">
+                                            <small>Tanggal</small>
+                                            <input type="date" name="tanggal" id="tanggal" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 mt-3">
+                                        <div class="form-group">
+                                            <small>Lama Peminjaman</small>
+                                            <input type="text" name="lama_peminjaman" id="lama_peminjaman" class="form-control">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 mt-3">
+                                        <div class="form-group">
+                                            <small>Jaminan</small>
+                                            <select name="jaminan" id="jaminan" class="form-control">
+                                                <option value="">Silahkan pilih jaminan...</option>
+                                                <?php foreach ($result as $val) { ?>
+                                                    <option value="<?= $val['jaminan'] ?>"><?= $val['jaminan'] ?></option>
+                                                <?php } ?>
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12 mt-3">
-                                        <div class="form-group">
-                                            <small>Tgl Surat</small>
-                                            <input type="date" name="tgl_surat" id="tgl_surat" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 mt-3">
-                                        <div class="form-group">
-                                            <small>Ttd Surat</small>
-                                            <input type="text" name="ttd_surat" id="ttd_surat" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 mt-3">
-                                        <div class="form-group">
-                                            <small>Ttd Menyetujui</small>
-                                            <input type="text" name="ttd_menyetujui" id="ttd_menyetujui" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 mt-3">
-                                        <div class="form-group">
-                                            <small>Ttd Mengetahui</small>
-                                            <input type="text" name="ttd_mengetahui" id="ttd_mengetahui" class="form-control">
-                                        </div>
-                                    </div>
+
                                     <div class="col-lg-12 mt-4">
-                                        <button type="submit" name="submit" class="btn btn-info text-white">Add</button>
-                                        <a href="view.php" class="btn btn-danger">Cancel</a>
+                                        <button type="submit" name="submit" class="btn btn-info text-white"><i class="bi bi-save"></i> Add</button>
+                                        <a href="view.php" class="btn btn-danger"><i class="bi bi-arrow-left"></i> Cancel</a>
                                     </div>
                                 </div>
                             </form>

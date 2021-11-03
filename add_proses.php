@@ -1,33 +1,23 @@
-<!-- Proses Add Data -->
 <?php
-require_once('Connection.php');
+
+require_once('connection.php');
 
 if (isset($_POST['submit'])) {
-    $no_surat = $_POST['no_surat'];
-    $jenis_surat = $_POST['jenis_surat'];
-    $tgl_surat = $_POST['tgl_surat'];
-    $ttd_surat = $_POST['ttd_surat'];
-    $ttd_menyetujui = $_POST['ttd_menyetujui'];
-    $ttd_mengetahui = $_POST['ttd_mengetahui'];
+    $nama_penyewa = $_POST['nama_penyewa'];
+    $alamat = $_POST['alamat'];
+    $tanggal = $_POST['tanggal'];
+    $lama_peminjaman = $_POST['lama_peminjaman'];
+    $jaminan = $_POST['jaminan'];
+    $harga = $_POST['lama_peminjaman']*50000;
 
     // SQL Insert to Database db_surat
-    $insert_sql = "INSERT INTO tbl_surat (id, no_surat, jenis_surat, tgl_surat, ttd_surat, ttd_mengetahui, ttd_menyetujui) VALUES ('', '$no_surat', '$jenis_surat', '$tgl_surat', '$ttd_surat', '$ttd_menyetujui', '$ttd_mengetahui')";
+    $insert_sql = "INSERT INTO tbl_rentalps (nama_penyewa, alamat, tanggal, lama_peminjaman, jaminan,harga) 
+    VALUES ('$nama_penyewa', '$alamat', '$tanggal', '$lama_peminjaman', '$jaminan','$harga')";
     $insert = $con->query($insert_sql);
 
     if ($insert) {
-?>
-        <script>
-            alert('Success insert data');
-            window.location.href = '<?= $public_path . "nazar_MI20B/Week4/view.php" ?>';
-        </script>
-    <?php
+        header('location:view.php');
     } else {
-    ?>
-        <script>
-            alert('Failed insert data');
-        </script>
-<?php
+        header('location:view.php?pesan=tambah');
     }
 }
-
-?>
