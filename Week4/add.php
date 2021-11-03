@@ -1,5 +1,18 @@
 <?php
 require_once('Connection.php');
+$sql = "SELECT * FROM tbl_jenis_surat";
+$result = $con->query($sql);
+$data = $result->fetch_assoc();
+
+if ($data['jenis_surat'] == 1) {
+    $js = 'Surat Keputusan';
+} else if ($data['jenis_surat'] == 2) {
+    $js = 'Surat Pernyataan';
+} else if ($data['jenis_surat'] == 3) {
+    $js = 'Surat Peminjaman';
+} else {
+    $js = 'Kode Bermasalah';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,9 +51,16 @@ require_once('Connection.php');
                                             <small>Jenis Surat</small>
                                             <select name="jenis_surat" id="jenis_surat" class="form-control">
                                                 <option value="">Silahkan Pilih...</option>
-                                                <option value="1">Surat Keputusan</option>
+                                                <?php
+                                                foreach ($result as $js){
+                                                ?>
+                                                <option value="<?=$js['id_js'];?>"><?=$js['jenis_surat']?></option>
+                                                <?php
+                                                }
+                                                ?>
+                                                <!-- <option value="1">Surat Keputusan</option>
                                                 <option value="2">Surat Pernyataan</option>
-                                                <option value="3">Surat Peminjaman</option>
+                                                <option value="3">Surat Peminjaman</option> -->
                                             </select>
                                         </div>
                                     </div>
